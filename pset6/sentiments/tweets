@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import nltk
+
+from analyzer import Analyzer
+from termcolor import colored
+from helpers import get_user_timeline
+
+def main():
+
+    # ensure proper usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets @screen_name")
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # instantiate analyzer
+    analyzer = Analyzer(positives, negatives)
+
+    # define screen name variable to get tweets from
+    screen_name = sys.argv[1].lstrip("@")
+
+    # get tweets
+    tweets = get_user_timeline(screen_name, 50)
+
+    # check if get_user_timeline throws an error
+    if tweets == None:
+        sys.exit("Profile doesn't exist or private")
+
+    # define tokenizer
+    tokenizer = nltk.tokenize.TweetTokenizer()
+
+    # tokenize every tweet, analyze every word (token) and calculate total score
+    for tweet in tweets:
+        total = 0
+        tokens = tokenizer.tokenize(tweet)
+
+        for token in tokens:
+            score = analyzer.analyze(token)
+            total += score
+
+        # print every tweet and its score
+        if total > 0:
+            print(colored(" {} {}".format(total, tweet), "green"))
+        elif total < 0:
+            print(colored("{} {}".format(total, tweet), "red"))
+        else:
+            print(colored(" {} {}".format(total, tweet), "yellow"))
+
+if __name__ == "__main__":
+    main()

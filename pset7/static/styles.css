@@ -1,0 +1,62 @@
+/* removing the ugliness and giving website some style */
+body
+{
+    background-color: #E9E9E9;
+}
+
+.navbar-default
+{
+    background-color: #2a3b4e !important;
+    border: none;
+}
+
+.navbar-default a
+{
+    color: #E9E9E9 !important;
+}
+
+.navbar-default a:hover
+{
+    color: #BCBCBC !important;
+}
+
+.btn-default
+{
+    background-color: #06bc9b !important;
+    color: #E9E9E9 !important;
+}
+
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* colors for navbar */
+.navbar-default .navbar-brand .green
+{
+    color: #06bc9b;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main td
+{
+    /* left-align tables' cells */
+    text-align: left;
+}

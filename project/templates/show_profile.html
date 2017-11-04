@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 profile-left">
+                <img src="{{ url_for('static', filename = user_target.image) }}"></img>
+                {% if user_target.username != user.username %}
+                <div id="profile-like">
+                    <p><i>{{ message }}</i></p>
+                    <form action="{{ url_for('like', username = user_target.username) }}", method="post">
+                      <input type="image" src="{{ url_for('static', filename='like.png') }}" alt="Submit" width="48" height="48">
+                    </form>
+                    <form action="{{ url_for('dislike', username = user_target.username) }}", method="post">
+                      <input type="image" src="{{ url_for('static', filename='dislike.png') }}" alt="Submit" width="48" height="48">
+                    </form>
+                </div>
+                {% endif %}
+                {% if user_target.username == user.username %}
+                <a class="btn btn-default" href="{{ url_for('profile_set') }}" style="margin-top: 50px;">Change profile</a>
+                {% endif %}
+            </div>
+            <div class="col-md-8 profile-right">
+                <h1 class="profile-h1">About</h1>
+                <div class="profile-form">
+                    <div>
+                        <span class="profile-key">First name: </span><p class="profile-value">{{ user_target.firstname }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Last name: </span><p class="profile-value">{{ user_target.lastname }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Age: </span><p class="profile-value">{{ user_target.age }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Gender: </span><p class="profile-value">{{ user_target.gender }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Status: </span><p class="profile-value">{{ user_target.status }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Country: </span><p class="profile-value">{{ user_target.country }}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="profile-key">Contact: </span><p class="profile-value">{{ user_target.contact }}</p>
+                    </div>
+                    <div>
+                        <span class="profile-key">About: </span><p class="profile-value" style="font-weight: normal;">{{ user_target.about }}</p>
+                    </div>
+                </div>
+                <div style="height: 300px;"></div>
+                <h1 class="profile-h1">Recent activity</h1>
+                <div class="wrap">
+                    <ul>
+                        {% for event in events %}
+                            <li><div><span class="username">{{ event.username }} - </span><span class="time">{{ event.time }}</span><p class="event">{{ event.event }}</p></div></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

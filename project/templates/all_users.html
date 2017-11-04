@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    All Users
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="order">
+                    <h3>Order results by: </h3>
+                    <a href="{{ url_for('user_username') }}", method="post" class="btn btn-default">Username</a>
+                    <a href="{{ url_for('user_fullname') }}", method="post" class="btn btn-default">Full name</a>
+                    <a href="{{ url_for('user_age') }}", method="post" class="btn btn-default">Age</a>
+                    <a href="{{ url_for('user_country') }}", method="post" class="btn btn-default">Country</a>
+                    <a href="{{ url_for('user_popularity') }}", method="post" class="btn btn-default">Popularity</a>
+                </div>
+            </div>
+            <div class="col-md-10" style="text-align: center;">
+                <div class="wrap">
+                    <h3>View all users</h3>
+                    <hr>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Username</th>
+                                <th>Full name</th>
+                                <th>Age</th>
+                                <th>Country</th>
+                                <th>Popularity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td><img class="avatar" src="{{ url_for('static', filename = user.image) }}"></img></td>
+                                    <td><a class="username" href="{{ url_for('show_profile', username = user.username) }}">{{ user.username }}</a></td>
+                                    <td>{{ user.firstname }} {{ user.lastname }}</td>
+                                    <td>{{ user.age }}</td>
+                                    <td>{{ user.country }}</td>
+                                    <td>{{ user.popularity }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

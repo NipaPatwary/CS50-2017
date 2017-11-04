@@ -1,0 +1,11 @@
+0.  pneumonoultramicroscopicsilicovolcanoconiosis is the longest word in the dictionary.
+1.  getrusage returns resource usage statistics.
+2.  There are 16 members in struct rusage.
+3.  I don't know.
+4.  In main function we first open text provided by user, then iterate through each character, check if all of them are alphabetical
+    characters or apostrophes and append each character to a word variable. For each word we add '\0' to mark its end, and then check
+    each word with check function.
+    If any string contain non-alphabetical characters or is longer that max length (45), we stop iteration, and move to next string.
+5.  We use fgetc instead of fscanf because it scans each character in the string,
+    so that we can keep track that number of characters doesn't exceed the maximum length of the word which is 45 in our case.
+6.  Because they don't change?

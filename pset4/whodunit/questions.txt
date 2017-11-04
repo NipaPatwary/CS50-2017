@@ -1,0 +1,26 @@
+1.  stdint.h is header file in C standard library that allows defining specific-width integers with typedefs.
+
+2.  uint8_t, uint32_t, int32_t, uint16_t all define specific amount of bits that can be assigned to types
+    in order to find specific parts in a file, for example in BITMAPFILEHEADER.
+
+3.  BYTE = 1 byte, DWORD = 4 bytes, LONG = 4 bytes, WORD = 2 bytes.
+
+4.  First two bytes in bmp files is bfType which specifies the type of file (must be BM).
+
+5.  biSize is the number of bytes required by structure (BITMAPINFOHEADER) and bfSize is the size of whole bmp file
+    (size of image biSizeImage  + size of BITMAPFILEHEADER + size of BITMAPINFOHEADER).
+
+6.  If biHeight is positive, the bitmap is a bottom-up DIB and its origin is the lower-left corner,
+    if biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+
+7.  BiBitCount specifies the number of bits per pixel and maximum number of colors in bmp.
+
+8.  fopen() might return NULL if can't open specific file. (bad path, for example).
+
+9.  Third argument in fread() is 1 because it reads BITMAPFILEHEADER or BITMAPINFOHEADER and we have only one of them.
+
+10. Padding = 3.
+
+11. fseek() is file position indicator - tells us where are we in the file.
+
+12. SEEK_CUR is current position in file.

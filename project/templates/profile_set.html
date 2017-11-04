@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Set Profile
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <p style="font-family: 'Open Sans'; font-size: 18px; margin-top: 20px;"><i>Please set up your profile</i></p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 profile-left">
+                <img src="{{ url_for('static', filename = image_profile) }}"></img>
+                <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                    <input id="choose-file" type="file" name="file" accept="image/*"/>
+                    <br>
+                    <input id="file-submit" type="submit" value="Upload"/>
+                </form>
+            </div>
+            <div class="col-md-8 profile-right">
+                <form action="{{ url_for('profile_set') }}" method="post">
+                    <fieldset class="profile-form">
+                        <div class="form-group">
+                            <span class="profile_set-key">First name: </span><input autocomplete="off" autofocus class="form-control float-right" name="firstname" type="text"/>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span class="profile_set-key">Last name: </span><input autocomplete="off" autofocus class="form-control float-right" name="lastname" type="text"/>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span class="profile_set-key">Age: </span><input class="form-control float-right" name="age" type="number"/>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span class="profile_set-key">Gender: </span>
+                            <input class="profile_set-radio" type="radio" name="gender" value="male"><b> Male</b></input>
+                            <input class="profile_set-radio" type="radio" name="gender" value="female"><b> Female</b></input>
+                        </div>
+                        <div class="form-group">
+                            <span class="profile_set-key">Status: </span>
+                            <input class="profile_set-radio" type="radio" name="status" value="single"><b> Single</b></input>
+                            <input class="profile_set-radio" type="radio" name="status" value="taken"><b> Taken</b></input>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="profile_set-key">Country: </span><input class="form-control float-right" name="country" type="text"/>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span class="profile_set-key">About you: </span><textarea class="form-control float-right" name="about" rows="7" style="font-weight: normal;"></textarea>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button class="btn btn-default save" type="submit">Save profile</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

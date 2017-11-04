@@ -1,0 +1,4 @@
+0. Framework allows any dimension between 3 and 9.
+1. Board is represented as 2D array.
+2. Function greet() is called to greet the player at the beginning.
+3. I need to implement functions: init(), draw(), move() and won().

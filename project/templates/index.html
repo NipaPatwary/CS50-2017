@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="order">
+                    <h3>See just: </h3>
+                    <a href="{{ url_for('wall_posts') }}", method="post" class="btn btn-default">Posts</a>
+                    <a href="{{ url_for('wall_votes') }}", method="post" class="btn btn-default">Likes</a>
+                    <a href="{{ url_for('wall_votes') }}", method="post" class="btn btn-default">Dislikes</a>
+                    <a href="{{ url_for('wall_joins') }}", method="post" class="btn btn-default">Who joined</a>
+                </div>
+            </div>
+            <div class="col-md-10" style="text-align: center;">
+                <h2 style="font-family: 'Roboto Slab'">Welcome to <span style="font-family: 'Lobster'; font-size: 40px;"> FaceRate</span> !</h2>
+                <div id="wall">
+                    <p style="text-align: left;"><i>Make Post:</i></p>
+                    <form action="{{ url_for('make_post') }}" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" name="wall" rows="5" placeholder="What's on your mind?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default" type="submit">Post</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="wrap">
+                    <ul>
+                        {% for event in events %}
+                            <li>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <img class="avatar" src="{{ url_for('static', filename = event.image) }}"></img>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <a class="username" href="{{ url_for('show_profile', username = event.username) }}">{{ event.username }}</a>
+                                        - <span class="time">{{ event.time }}</span>
+                                        <p class="event">{{ event.event }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
